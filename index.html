@@ -667,6 +667,28 @@
         /* Per-item action buttons */
         .item-action {
             margin-top: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        /* Section toggle (collapse/expand) */
+        .section-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #64748b;
+            padding: 0.25rem;
+            transition: transform 0.3s;
+            line-height: 1;
+        }
+
+        .section-toggle.collapsed {
+            transform: rotate(-90deg);
+        }
+
+        .comparison-grid.collapsed {
+            display: none;
         }
 
         .item-action-btn {
@@ -1230,7 +1252,14 @@
                                 <!-- Problems Section -->
                                 <div class="section-comparison">
                                     <div class="section-header">
-                                        <h3 class="section-name">Problems</h3>
+                                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                            <button class="section-toggle" onclick="toggleSection(this)">&#9660;</button>
+                                            <h3 class="section-name">Problems</h3>
+                                        </div>
+                                        <div class="section-actions">
+                                            <button class="action-btn btn-primary" onclick="sectionAction('add', 'Problems')">+ Add All to EHR</button>
+                                            <button class="action-btn btn-secondary" onclick="sectionAction('replace', 'Problems')">Replace All in EHR</button>
+                                        </div>
                                     </div>
                                     <div class="comparison-grid">
                                         <div class="data-column">
@@ -1247,7 +1276,7 @@
                                                 <div class="item-title">+ Diabetic Peripheral Neuropathy <span class="status-badge badge-new">NEW</span></div>
                                                 <div class="item-details">EMG confirms • Recommends gabapentin</div>
                                                 <div class="item-meta">Dx Sunrise Medical • 10/15/2025 • Received Nov 20, 2025</div>
-                                                <div class="item-action"><button class="item-action-btn btn-add" onclick="itemAction('add', 'Diabetic Peripheral Neuropathy')">+ Add to EHR</button></div>
+                                                <div class="item-action"><button class="item-action-btn btn-add" onclick="itemAction('add', 'Diabetic Peripheral Neuropathy')">+ Add to EHR</button><button class="item-action-btn btn-replace" onclick="itemAction('replace', 'Diabetic Peripheral Neuropathy')">Replace in EHR</button></div>
                                             </div>
                                             <div class="data-item updated">
                                                 <div class="item-title">⚠ Hypertension <span class="status-badge badge-updated">UPDATED</span></div>
@@ -1282,7 +1311,14 @@
                                 <!-- Allergies Section -->
                                 <div class="section-comparison">
                                     <div class="section-header">
-                                        <h3 class="section-name">Allergies</h3>
+                                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                            <button class="section-toggle" onclick="toggleSection(this)">&#9660;</button>
+                                            <h3 class="section-name">Allergies</h3>
+                                        </div>
+                                        <div class="section-actions">
+                                            <button class="action-btn btn-primary" onclick="sectionAction('add', 'Allergies')">+ Add All to EHR</button>
+                                            <button class="action-btn btn-secondary" onclick="sectionAction('replace', 'Allergies')">Replace All in EHR</button>
+                                        </div>
                                     </div>
                                     <div class="comparison-grid">
                                         <div class="data-column">
@@ -1296,7 +1332,7 @@
                                                 <div class="item-title">+ Shellfish <span class="status-badge badge-new">NEW</span></div>
                                                 <div class="item-details">Reaction: Anaphylaxis</div>
                                                 <div class="item-meta">Toronto General • 11/01/2025 • Received Nov 10, 2025</div>
-                                                <div class="item-action"><button class="item-action-btn btn-add" onclick="itemAction('add', 'Shellfish allergy')">+ Add to EHR</button></div>
+                                                <div class="item-action"><button class="item-action-btn btn-add" onclick="itemAction('add', 'Shellfish allergy')">+ Add to EHR</button><button class="item-action-btn btn-replace" onclick="itemAction('replace', 'Shellfish allergy')">Replace in EHR</button></div>
                                             </div>
                                         </div>
                                         <div class="data-column">
@@ -1317,7 +1353,14 @@
                                 <!-- Medications Section -->
                                 <div class="section-comparison">
                                     <div class="section-header">
-                                        <h3 class="section-name">Medications</h3>
+                                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                            <button class="section-toggle" onclick="toggleSection(this)">&#9660;</button>
+                                            <h3 class="section-name">Medications</h3>
+                                        </div>
+                                        <div class="section-actions">
+                                            <button class="action-btn btn-primary" onclick="sectionAction('add', 'Medications')">+ Add All to EHR</button>
+                                            <button class="action-btn btn-secondary" onclick="sectionAction('replace', 'Medications')">Replace All in EHR</button>
+                                        </div>
                                     </div>
                                     <div class="comparison-grid">
                                         <div class="data-column">
@@ -1331,7 +1374,7 @@
                                                 <div class="item-title">+ Metformin 1000mg <span class="status-badge badge-new">NEW</span></div>
                                                 <div class="item-details">Twice daily with meals • Diabetes management</div>
                                                 <div class="item-meta">Kingston Health • Dr. Desai • Started 10/2025</div>
-                                                <div class="item-action"><button class="item-action-btn btn-add" onclick="itemAction('add', 'Metformin 1000mg')">+ Add to EHR</button></div>
+                                                <div class="item-action"><button class="item-action-btn btn-add" onclick="itemAction('add', 'Metformin 1000mg')">+ Add to EHR</button><button class="item-action-btn btn-replace" onclick="itemAction('replace', 'Metformin 1000mg')">Replace in EHR</button></div>
                                             </div>
                                             <div class="data-item updated">
                                                 <div class="item-title">⚠ Atorvastatin <span class="status-badge badge-updated">UPDATED</span></div>
@@ -1363,7 +1406,14 @@
                                 <!-- Demographics Section -->
                                 <div class="section-comparison">
                                     <div class="section-header">
-                                        <h3 class="section-name">Demographics</h3>
+                                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                            <button class="section-toggle" onclick="toggleSection(this)">&#9660;</button>
+                                            <h3 class="section-name">Demographics</h3>
+                                        </div>
+                                        <div class="section-actions">
+                                            <button class="action-btn btn-primary" onclick="sectionAction('add', 'Demographics')">+ Add All to EHR</button>
+                                            <button class="action-btn btn-secondary" onclick="sectionAction('replace', 'Demographics')">Replace All in EHR</button>
+                                        </div>
                                     </div>
                                     <div class="comparison-grid">
                                         <div class="data-column">
@@ -1659,6 +1709,20 @@
         function itemAction(action, itemName) {
             const actionText = action === 'add' ? 'Adding' : 'Replacing';
             alert(`${actionText} "${itemName}" in EHR\n\nThis would trigger the workflow to ${action} this item in the local EHR record.`);
+        }
+
+        // Section-level Action Handler
+        function sectionAction(action, sectionName) {
+            const actionText = action === 'add' ? 'Adding all new' : 'Replacing all updated';
+            alert(`${actionText} ${sectionName} items in EHR\n\nThis would trigger the workflow to ${action} all applicable items from the ${sectionName} section.`);
+        }
+
+        // Collapse/Expand Section Toggle
+        function toggleSection(btn) {
+            const sectionHeader = btn.closest('.section-header');
+            const grid = sectionHeader.nextElementSibling;
+            btn.classList.toggle('collapsed');
+            grid.classList.toggle('collapsed');
         }
 
         function refreshData() {
