@@ -78,73 +78,47 @@
             overflow: hidden;
         }
 
-        /* Sidebar Wrapper */
-        .sidebar-wrapper {
-            display: flex;
-            height: 100%;
+        /* Card Buttons */
+        .card-buttons {
+            padding: 0.4rem 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
         }
 
-        /* Left Icon Strip */
-        .sidebar-icon-strip {
-            width: 48px;
-            background: #e8ecf1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 0.5rem;
-            gap: 2px;
-            flex-shrink: 0;
-        }
-
-        .sidebar-icon-btn {
-            width: 42px;
-            height: 42px;
-            border: none;
-            background: transparent;
+        .card-button {
+            width: 100%;
+            padding: 0.45rem 0.75rem;
+            margin-bottom: 0.2rem;
+            border: 1px solid #e2e8f0;
+            background: white;
             border-radius: 4px;
             cursor: pointer;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            font-size: 0.6rem;
-            font-weight: 700;
-            color: #475569;
-            position: relative;
+            gap: 0.5rem;
+            font-size: 0.78rem;
             transition: all 0.2s;
-            gap: 1px;
+            text-align: left;
         }
 
-        .sidebar-icon-btn:hover {
-            background: rgba(44, 82, 130, 0.15);
+        .card-button:hover {
+            background: #f8fafc;
+            border-color: #2c5282;
         }
 
-        .sidebar-icon-btn.active {
+        .card-button.active {
             background: #2c5282;
             color: white;
+            border-color: #2c5282;
         }
 
-        .sidebar-icon-btn .icon-count {
-            font-size: 0.65rem;
-            font-weight: 600;
-            line-height: 1;
-        }
-
-        .sidebar-icon-btn .icon-badge {
-            position: absolute;
-            top: 2px;
-            right: 2px;
+        .card-badge {
             background: #ef4444;
             color: white;
-            font-size: 0.6rem;
-            font-weight: 700;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.1rem 0.45rem;
+            border-radius: 10px;
+            margin-left: auto;
         }
 
         /* Patient Card Sidebar */
@@ -690,6 +664,39 @@
             color: #991b1b;
         }
 
+        /* Per-item action buttons */
+        .item-action {
+            margin-top: 0.5rem;
+        }
+
+        .item-action-btn {
+            padding: 0.3rem 0.75rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.78rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .item-action-btn.btn-add {
+            background: #10b981;
+            color: white;
+        }
+
+        .item-action-btn.btn-add:hover {
+            background: #059669;
+        }
+
+        .item-action-btn.btn-replace {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .item-action-btn.btn-replace:hover {
+            background: #d97706;
+        }
+
         /* Document List View */
         .consent-banner {
             background: #f0f9ff;
@@ -797,7 +804,7 @@
 
         .table-header {
             display: grid;
-            grid-template-columns: 120px 200px 200px 200px 150px;
+            grid-template-columns: 120px 1fr 1fr 1fr 80px;
             gap: 1rem;
             padding: 1rem 1.5rem;
             background: #f8fafc;
@@ -809,7 +816,7 @@
 
         .table-row {
             display: grid;
-            grid-template-columns: 120px 200px 200px 200px 150px;
+            grid-template-columns: 120px 1fr 1fr 1fr 80px;
             gap: 1rem;
             padding: 1rem 1.5rem;
             border-bottom: 1px solid #e2e8f0;
@@ -981,10 +988,6 @@
                 width: 260px;
             }
 
-            .sidebar-icon-strip {
-                width: 40px;
-            }
-
             .pill-nav {
                 flex-wrap: wrap;
             }
@@ -1011,160 +1014,149 @@
         <!-- Main Content -->
         <div class="main-content">
             <!-- Patient Card Sidebar -->
-            <div class="sidebar-wrapper">
-                <!-- Left Icon Strip -->
-                <div class="sidebar-icon-strip">
-                    <button class="sidebar-icon-btn" data-tab="overview" onclick="showTab('overview')" title="Patients">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
-                        <span class="icon-count">2</span>
+            <div class="patient-card">
+                <!-- Patient Header -->
+                <div class="patient-header-row">
+                    <div class="patient-avatar">
+                        <svg width="40" height="48" viewBox="0 0 40 48" fill="currentColor">
+                            <circle cx="20" cy="12" r="8"/>
+                            <path d="M4 40c0-8 7-13 16-13s16 5 16 13v4H4v-4z"/>
+                        </svg>
+                    </div>
+                    <div class="patient-info-main">
+                        <div class="patient-name">PLEDGE, MHTGA</div>
+                        <div class="patient-nickname">"Mhtga"</div>
+                        <div class="patient-demo">01-Jan-2000 (25y) Male</div>
+                        <div class="patient-location">EMERGENCY DEPT</div>
+                    </div>
+                    <div class="patient-ids">
+                        <div>Visit ID: 0003197921</div>
+                        <div>MRN: 0000331960</div>
+                    </div>
+                </div>
+
+                <!-- Acute Tab -->
+                <div class="sidebar-tab-bar">
+                    <button class="sidebar-tab-btn">Acute</button>
+                </div>
+
+                <!-- Quick Links Grid -->
+                <div class="sidebar-links-grid">
+                    <a class="sidebar-link" href="#">Assignments</a>
+                    <a class="sidebar-link" href="#">Create Task/Message</a>
+                    <a class="sidebar-link" href="#">Admit Diagnoses (0)</a>
+                    <a class="sidebar-link" href="#">Allergies (7)</a>
+                    <a class="sidebar-link" href="#">Patient Alerts (0)</a>
+                    <a class="sidebar-link" href="#">External Documents (0)</a>
+                    <a class="sidebar-link" href="#">United Ameri...(1)</a>
+                    <a class="sidebar-link" href="#">Contact: (613)613-6136</a>
+                </div>
+
+                <!-- Card Buttons -->
+                <div class="card-buttons">
+                    <button class="card-button active" data-tab="hie" onclick="showTab('hie')">
+                        🌐 HIE
+                        <span class="card-badge">5</span>
                     </button>
-                    <button class="sidebar-icon-btn" title="Alerts">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
-                        <span class="icon-count">0</span>
-                    </button>
-                    <button class="sidebar-icon-btn active" data-tab="hie" onclick="showTab('hie')" title="HIE">
-                        <span>HIE</span>
-                        <span class="icon-badge">5</span>
-                    </button>
-                    <button class="sidebar-icon-btn" data-tab="overview" title="CDA">
-                        <span>CDA</span>
+                    <button class="card-button" onclick="showTab('overview')">
+                        📊 CDA
                     </button>
                 </div>
 
-                <!-- Patient Card -->
-                <div class="patient-card">
-                    <!-- Patient Header -->
-                    <div class="patient-header-row">
-                        <div class="patient-avatar">
-                            <svg width="40" height="48" viewBox="0 0 40 48" fill="currentColor">
-                                <circle cx="20" cy="12" r="8"/>
-                                <path d="M4 40c0-8 7-13 16-13s16 5 16 13v4H4v-4z"/>
-                            </svg>
-                        </div>
-                        <div class="patient-info-main">
-                            <div class="patient-name">PLEDGE, MHTGA</div>
-                            <div class="patient-nickname">"Mhtga"</div>
-                            <div class="patient-demo">01-Jan-2000 (25y) Male</div>
-                            <div class="patient-location">EMERGENCY DEPT</div>
-                        </div>
-                        <div class="patient-ids">
-                            <div>Visit ID: 0003197921</div>
-                            <div>MRN: 0000331960</div>
-                        </div>
+                <!-- Visit Info -->
+                <div class="sidebar-section">
+                    <div class="sidebar-field">
+                        <span class="sidebar-field-label">Attending:</span>
+                        <span class="sidebar-field-value">NEWMAN, LARRY</span>
                     </div>
-
-                    <!-- Acute Tab -->
-                    <div class="sidebar-tab-bar">
-                        <button class="sidebar-tab-btn">Acute</button>
+                    <div class="sidebar-field">
+                        <span class="sidebar-field-label">Admit Date:</span>
+                        <span class="sidebar-field-value">18-Nov-2025 07:13 (&lt;1 h)</span>
                     </div>
-
-                    <!-- Quick Links Grid -->
-                    <div class="sidebar-links-grid">
-                        <a class="sidebar-link" href="#">Assignments</a>
-                        <a class="sidebar-link" href="#">Create Task/Message</a>
-                        <a class="sidebar-link" href="#">Admit Diagnoses (0)</a>
-                        <a class="sidebar-link" href="#">Allergies (7)</a>
-                        <a class="sidebar-link" href="#">Patient Alerts (0)</a>
-                        <a class="sidebar-link" href="#">External Documents (0)</a>
-                        <a class="sidebar-link" href="#">United Ameri...(1)</a>
-                        <a class="sidebar-link" href="#">Contact: (613)613-6136</a>
+                    <div class="sidebar-field">
+                        <span class="sidebar-field-label">Visit Status:</span>
+                        <span class="sidebar-field-value">Admit</span>
                     </div>
+                </div>
 
-                    <!-- Visit Info -->
-                    <div class="sidebar-section">
-                        <div class="sidebar-field">
-                            <span class="sidebar-field-label">Attending:</span>
-                            <span class="sidebar-field-value">NEWMAN, LARRY</span>
-                        </div>
-                        <div class="sidebar-field">
-                            <span class="sidebar-field-label">Admit Date:</span>
-                            <span class="sidebar-field-value">18-Nov-2025 07:13 (&lt;1 h)</span>
-                        </div>
-                        <div class="sidebar-field">
-                            <span class="sidebar-field-label">Visit Status:</span>
-                            <span class="sidebar-field-value">Admit</span>
-                        </div>
+                <!-- Vitals -->
+                <div class="sidebar-section">
+                    <div class="sidebar-field">
+                        <span class="vitals-icon">📏</span>
+                        <span class="sidebar-field-label">Height:</span>
+                        <span class="sidebar-field-value"></span>
                     </div>
-
-                    <!-- Vitals -->
-                    <div class="sidebar-section">
-                        <div class="sidebar-field">
-                            <span class="vitals-icon">📏</span>
-                            <span class="sidebar-field-label">Height:</span>
-                            <span class="sidebar-field-value"></span>
-                        </div>
-                        <div class="sidebar-field">
-                            <span class="vitals-icon">⚖️</span>
-                            <span class="sidebar-field-label">Weight:</span>
-                            <span class="sidebar-field-value"></span>
-                        </div>
-                        <div class="sidebar-field">
-                            <span class="vitals-icon">📊</span>
-                            <span class="sidebar-field-label">BMI:</span>
-                            <span class="sidebar-field-value"></span>
-                            <span style="margin-left:auto" class="sidebar-field-label">BSA:</span>
-                            <span class="sidebar-field-value"></span>
-                            <span style="margin-left:0.75rem" class="sidebar-field-label">CrCl:</span>
-                            <span class="sidebar-field-value"></span>
-                        </div>
+                    <div class="sidebar-field">
+                        <span class="vitals-icon">⚖️</span>
+                        <span class="sidebar-field-label">Weight:</span>
+                        <span class="sidebar-field-value"></span>
                     </div>
-
-                    <!-- Additional Details -->
-                    <div class="sidebar-section">
-                        <div class="sidebar-field">
-                            <span class="sidebar-field-label">Primary Language:</span>
-                            <span class="sidebar-field-value">English</span>
-                        </div>
-                        <div class="sidebar-field">
-                            <span class="sidebar-field-label">PCP:</span>
-                            <span class="sidebar-field-value">None</span>
-                        </div>
-                        <div class="sidebar-field">
-                            <span class="sidebar-field-label">Building:</span>
-                            <span class="sidebar-field-value"></span>
-                        </div>
-                        <div class="sidebar-field">
-                            <span class="sidebar-field-label">Facility:</span>
-                            <span class="sidebar-field-value">ParHosp1500CRAZ2</span>
-                        </div>
-                        <div class="sidebar-field">
-                            <span class="sidebar-field-label">Patient type:</span>
-                            <span class="sidebar-field-value">E EMERGENCY ROOM</span>
-                        </div>
-                        <div class="sidebar-field">
-                            <span class="sidebar-field-label">Service Code:</span>
-                            <span class="sidebar-field-value">EMERGENCY SERVICE</span>
-                        </div>
+                    <div class="sidebar-field">
+                        <span class="vitals-icon">📊</span>
+                        <span class="sidebar-field-label">BMI:</span>
+                        <span class="sidebar-field-value"></span>
+                        <span style="margin-left:auto" class="sidebar-field-label">BSA:</span>
+                        <span class="sidebar-field-value"></span>
+                        <span style="margin-left:0.75rem" class="sidebar-field-label">CrCl:</span>
+                        <span class="sidebar-field-value"></span>
                     </div>
+                </div>
 
-                    <!-- Visits Section -->
-                    <div class="visits-section">
-                        <div class="visits-header">
-                            <span>Visits</span>
-                            <span>&#9660;</span>
-                        </div>
-                        <div class="visits-filter">
-                            <select>
-                                <option>Active</option>
-                                <option>All</option>
-                                <option>Inactive</option>
-                            </select>
-                        </div>
-                        <div class="visit-entry">
-                            <div class="visit-entry-header">Admitted: 18-Nov-2025</div>
-                            <div class="visit-entry-row">
-                                <span class="visit-entry-num">1</span>
-                                <div class="visit-entry-detail">
-                                    Visit Id: 0003197921<br>
-                                    Discharge<br>
-                                    Setting: Outpatient<br>
-                                    Disposition:<br>
-                                    Location: EMERGENCY DEPT
-                                </div>
+                <!-- Additional Details -->
+                <div class="sidebar-section">
+                    <div class="sidebar-field">
+                        <span class="sidebar-field-label">Primary Language:</span>
+                        <span class="sidebar-field-value">English</span>
+                    </div>
+                    <div class="sidebar-field">
+                        <span class="sidebar-field-label">PCP:</span>
+                        <span class="sidebar-field-value">None</span>
+                    </div>
+                    <div class="sidebar-field">
+                        <span class="sidebar-field-label">Building:</span>
+                        <span class="sidebar-field-value"></span>
+                    </div>
+                    <div class="sidebar-field">
+                        <span class="sidebar-field-label">Facility:</span>
+                        <span class="sidebar-field-value">ParHosp1500CRAZ2</span>
+                    </div>
+                    <div class="sidebar-field">
+                        <span class="sidebar-field-label">Patient type:</span>
+                        <span class="sidebar-field-value">E EMERGENCY ROOM</span>
+                    </div>
+                    <div class="sidebar-field">
+                        <span class="sidebar-field-label">Service Code:</span>
+                        <span class="sidebar-field-value">EMERGENCY SERVICE</span>
+                    </div>
+                </div>
+
+                <!-- Visits Section -->
+                <div class="visits-section">
+                    <div class="visits-header">
+                        <span>Visits</span>
+                        <span>&#9660;</span>
+                    </div>
+                    <div class="visits-filter">
+                        <select>
+                            <option>Active</option>
+                            <option>All</option>
+                            <option>Inactive</option>
+                        </select>
+                    </div>
+                    <div class="visit-entry">
+                        <div class="visit-entry-header">Admitted: 18-Nov-2025</div>
+                        <div class="visit-entry-row">
+                            <span class="visit-entry-num">1</span>
+                            <div class="visit-entry-detail">
+                                Visit Id: 0003197921<br>
+                                Discharge<br>
+                                Setting: Outpatient<br>
+                                Disposition:<br>
+                                Location: EMERGENCY DEPT
                             </div>
                         </div>
-                        <div class="no-more-items">No More Items</div>
                     </div>
+                    <div class="no-more-items">No More Items</div>
                 </div>
             </div>
 
@@ -1194,22 +1186,22 @@
                                 <p class="hie-subtitle">Patient: Morgan Allen • MRN 00459102</p>
                             </div>
                             <div class="hie-controls">
-                                <div class="view-toggle">
-                                    <button class="view-btn active" onclick="switchView('comparison')">📊 Comparison View</button>
-                                    <button class="view-btn" onclick="switchView('documents')">📄 Documents View</button>
+                                <div class="pill-nav" style="margin-bottom: 0;">
+                                    <button class="pill-button active" onclick="switchHIETab('hin')">Health Information Network</button>
+                                    <button class="pill-button" onclick="switchHIETab('dm')">Direct Messaging</button>
+                                    <button class="pill-button" onclick="switchHIETab('devices')">External Devices</button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Pill Navigation -->
-                        <div class="pill-nav">
-                            <button class="pill-button active" onclick="switchHIETab('hin')">Health Information Network</button>
-                            <button class="pill-button" onclick="switchHIETab('dm')">Direct Messaging</button>
-                            <button class="pill-button" onclick="switchHIETab('devices')">External Devices</button>
-                        </div>
-
                         <!-- Health Information Network Tab -->
                         <div id="hin-tab">
+                            <!-- View Toggle (only visible in HIN tab) -->
+                            <div class="view-toggle" style="margin-bottom: 1.5rem; width: fit-content;">
+                                <button class="view-btn active" onclick="switchView('comparison')">📊 Comparison View</button>
+                                <button class="view-btn" onclick="switchView('documents')">📄 Documents View</button>
+                            </div>
+
                             <!-- Comparison View -->
                             <div id="comparison-view">
                                 <div class="comparison-header">
@@ -1239,10 +1231,6 @@
                                 <div class="section-comparison">
                                     <div class="section-header">
                                         <h3 class="section-name">Problems</h3>
-                                        <div class="section-actions">
-                                            <button class="action-btn btn-primary" onclick="updateSection('problems', 'add')">Add New to EHR</button>
-                                            <button class="action-btn btn-secondary" onclick="updateSection('problems', 'replace')">Replace in EHR</button>
-                                        </div>
                                     </div>
                                     <div class="comparison-grid">
                                         <div class="data-column">
@@ -1259,11 +1247,13 @@
                                                 <div class="item-title">+ Diabetic Peripheral Neuropathy <span class="status-badge badge-new">NEW</span></div>
                                                 <div class="item-details">EMG confirms • Recommends gabapentin</div>
                                                 <div class="item-meta">Dx Sunrise Medical • 10/15/2025 • Received Nov 20, 2025</div>
+                                                <div class="item-action"><button class="item-action-btn btn-add" onclick="itemAction('add', 'Diabetic Peripheral Neuropathy')">+ Add to EHR</button></div>
                                             </div>
                                             <div class="data-item updated">
                                                 <div class="item-title">⚠ Hypertension <span class="status-badge badge-updated">UPDATED</span></div>
                                                 <div class="item-details">Stage 2 • Average BP 152/94</div>
                                                 <div class="item-meta">Toronto General • 11/15/2025 • Received Nov 25, 2025</div>
+                                                <div class="item-action"><button class="item-action-btn btn-replace" onclick="itemAction('replace', 'Hypertension')">Replace in EHR</button></div>
                                             </div>
                                         </div>
                                         <div class="data-column">
@@ -1293,10 +1283,6 @@
                                 <div class="section-comparison">
                                     <div class="section-header">
                                         <h3 class="section-name">Allergies</h3>
-                                        <div class="section-actions">
-                                            <button class="action-btn btn-primary" onclick="updateSection('allergies', 'add')">Add New to EHR</button>
-                                            <button class="action-btn btn-secondary" onclick="updateSection('allergies', 'replace')">Replace in EHR</button>
-                                        </div>
                                     </div>
                                     <div class="comparison-grid">
                                         <div class="data-column">
@@ -1310,6 +1296,7 @@
                                                 <div class="item-title">+ Shellfish <span class="status-badge badge-new">NEW</span></div>
                                                 <div class="item-details">Reaction: Anaphylaxis</div>
                                                 <div class="item-meta">Toronto General • 11/01/2025 • Received Nov 10, 2025</div>
+                                                <div class="item-action"><button class="item-action-btn btn-add" onclick="itemAction('add', 'Shellfish allergy')">+ Add to EHR</button></div>
                                             </div>
                                         </div>
                                         <div class="data-column">
@@ -1331,10 +1318,6 @@
                                 <div class="section-comparison">
                                     <div class="section-header">
                                         <h3 class="section-name">Medications</h3>
-                                        <div class="section-actions">
-                                            <button class="action-btn btn-primary" onclick="updateSection('medications', 'add')">Add New to EHR</button>
-                                            <button class="action-btn btn-secondary" onclick="updateSection('medications', 'replace')">Replace in EHR</button>
-                                        </div>
                                     </div>
                                     <div class="comparison-grid">
                                         <div class="data-column">
@@ -1348,11 +1331,13 @@
                                                 <div class="item-title">+ Metformin 1000mg <span class="status-badge badge-new">NEW</span></div>
                                                 <div class="item-details">Twice daily with meals • Diabetes management</div>
                                                 <div class="item-meta">Kingston Health • Dr. Desai • Started 10/2025</div>
+                                                <div class="item-action"><button class="item-action-btn btn-add" onclick="itemAction('add', 'Metformin 1000mg')">+ Add to EHR</button></div>
                                             </div>
                                             <div class="data-item updated">
                                                 <div class="item-title">⚠ Atorvastatin <span class="status-badge badge-updated">UPDATED</span></div>
                                                 <div class="item-details">40mg once daily (increased from 20mg)</div>
                                                 <div class="item-meta">Toronto General • 11/2025</div>
+                                                <div class="item-action"><button class="item-action-btn btn-replace" onclick="itemAction('replace', 'Atorvastatin')">Replace in EHR</button></div>
                                             </div>
                                         </div>
                                         <div class="data-column">
@@ -1379,9 +1364,6 @@
                                 <div class="section-comparison">
                                     <div class="section-header">
                                         <h3 class="section-name">Demographics</h3>
-                                        <div class="section-actions">
-                                            <button class="action-btn btn-primary" onclick="updateSection('demographics', 'update')">Update EHR</button>
-                                        </div>
                                     </div>
                                     <div class="comparison-grid">
                                         <div class="data-column">
@@ -1390,11 +1372,13 @@
                                                 <div class="item-title">⚠ Address <span class="status-badge badge-updated">UPDATED</span></div>
                                                 <div class="item-details">456 Maple Ave, Apt 3B<br>Toronto, ON M5H 2N2</div>
                                                 <div class="item-meta">Updated at Toronto General • 11/2025</div>
+                                                <div class="item-action"><button class="item-action-btn btn-replace" onclick="itemAction('replace', 'Address')">Replace in EHR</button></div>
                                             </div>
                                             <div class="data-item updated">
                                                 <div class="item-title">⚠ Phone <span class="status-badge badge-updated">UPDATED</span></div>
                                                 <div class="item-details">Mobile: (416) 555-7890</div>
                                                 <div class="item-meta">Verified 11/15/2025</div>
+                                                <div class="item-action"><button class="item-action-btn btn-replace" onclick="itemAction('replace', 'Phone')">Replace in EHR</button></div>
                                             </div>
                                         </div>
                                         <div class="data-column">
@@ -1416,20 +1400,6 @@
 
                             <!-- Documents View -->
                             <div id="documents-view" class="hidden">
-                                <div class="consent-banner">
-                                    <div class="consent-info">
-                                        <div class="consent-toggle">
-                                            <div class="toggle-switch"></div>
-                                            <span style="font-weight: 600;">Patient consent</span>
-                                        </div>
-                                        <span style="color: #64748b;">Required for comparison and download</span>
-                                    </div>
-                                    <div>
-                                        <button class="refresh-btn" onclick="refreshData()">🔄 Refresh</button>
-                                        <div class="sync-info">Last sync: 2025-12-18 07:54</div>
-                                    </div>
-                                </div>
-
                                 <div class="filter-bar">
                                     <div class="filter-group">
                                         <label class="filter-label">Filter by Document Type</label>
@@ -1464,57 +1434,42 @@
                                         <div>DOCUMENT TYPE</div>
                                         <div>FACILITY</div>
                                         <div>PROVIDER</div>
-                                        <div>ACTIONS</div>
+                                        <div>ACTION</div>
                                     </div>
                                     <div class="table-row">
                                         <div>2025-12-10</div>
                                         <div class="doc-type">Discharge Summary<br><span style="font-size: 0.85rem; color: #64748b;">4 pages</span></div>
                                         <div class="doc-facility">Ottawa Hospital</div>
                                         <div class="doc-provider">Dr. Melissa Clarke</div>
-                                        <div class="doc-actions">
-                                            <button class="doc-action-btn">View</button>
-                                            <button class="doc-action-btn">⬇ Download</button>
-                                        </div>
+                                        <div class="doc-actions"><button class="doc-action-btn">View</button></div>
                                     </div>
                                     <div class="table-row">
                                         <div>2025-11-02</div>
                                         <div class="doc-type">Radiology Report<br><span style="font-size: 0.85rem; color: #64748b;">6 pages</span></div>
                                         <div class="doc-facility">Toronto General</div>
                                         <div class="doc-provider">Dr. Andre Santos</div>
-                                        <div class="doc-actions">
-                                            <button class="doc-action-btn">View</button>
-                                            <button class="doc-action-btn">⬇ Download</button>
-                                        </div>
+                                        <div class="doc-actions"><button class="doc-action-btn">View</button></div>
                                     </div>
                                     <div class="table-row">
                                         <div>2025-10-18</div>
                                         <div class="doc-type">Consult Note<br><span style="font-size: 0.85rem; color: #64748b;">3 pages</span></div>
                                         <div class="doc-facility">Kingston Health</div>
                                         <div class="doc-provider">Dr. Priya Desai</div>
-                                        <div class="doc-actions">
-                                            <button class="doc-action-btn">View</button>
-                                            <button class="doc-action-btn">⬇ Download</button>
-                                        </div>
+                                        <div class="doc-actions"><button class="doc-action-btn">View</button></div>
                                     </div>
                                     <div class="table-row">
                                         <div>2025-09-04</div>
                                         <div class="doc-type">Immunization Record<br><span style="font-size: 0.85rem; color: #64748b;">2 pages</span></div>
                                         <div class="doc-facility">Ottawa Hospital</div>
                                         <div class="doc-provider">Dr. Daniel Wu</div>
-                                        <div class="doc-actions">
-                                            <button class="doc-action-btn">View</button>
-                                            <button class="doc-action-btn">⬇ Download</button>
-                                        </div>
+                                        <div class="doc-actions"><button class="doc-action-btn">View</button></div>
                                     </div>
                                     <div class="table-row">
                                         <div>2025-07-22</div>
                                         <div class="doc-type">Discharge Summary<br><span style="font-size: 0.85rem; color: #64748b;">5 pages</span></div>
                                         <div class="doc-facility">Toronto General</div>
                                         <div class="doc-provider">Dr. Lena Park</div>
-                                        <div class="doc-actions">
-                                            <button class="doc-action-btn">View</button>
-                                            <button class="doc-action-btn">⬇ Download</button>
-                                        </div>
+                                        <div class="doc-actions"><button class="doc-action-btn">View</button></div>
                                     </div>
                                 </div>
 
@@ -1661,8 +1616,8 @@
                 }
             });
 
-            // Update sidebar icon active state
-            document.querySelectorAll('.sidebar-icon-btn').forEach(btn => {
+            // Update card button active state
+            document.querySelectorAll('.card-button').forEach(btn => {
                 btn.classList.remove('active');
                 if (btn.getAttribute('data-tab') === tabName) {
                     btn.classList.add('active');
@@ -1691,7 +1646,7 @@
         function switchView(viewName) {
             document.getElementById('comparison-view').classList.add('hidden');
             document.getElementById('documents-view').classList.add('hidden');
-            
+
             document.getElementById(viewName + '-view').classList.remove('hidden');
 
             document.querySelectorAll('.view-btn').forEach(btn => {
@@ -1700,9 +1655,10 @@
             event.target.classList.add('active');
         }
 
-        // Action Handlers
-        function updateSection(section, action) {
-            alert(`Action: ${action} ${section} data\n\nThis would trigger the update workflow to add or replace ${section} in the EHR with data from the Health Information Network.`);
+        // Per-item Action Handler
+        function itemAction(action, itemName) {
+            const actionText = action === 'add' ? 'Adding' : 'Replacing';
+            alert(`${actionText} "${itemName}" in EHR\n\nThis would trigger the workflow to ${action} this item in the local EHR record.`);
         }
 
         function refreshData() {
